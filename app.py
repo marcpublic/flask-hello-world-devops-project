@@ -26,12 +26,12 @@ def info():
   
 @app.route('/test')
 def test():
-#    data = """\
-#    Test passed
-#    """
-    app.logger.error( 'erreur personnelle :-)', exc_info=True)
-    flask.abort(500)
-#    return TPL("default.html", title='Test', data=data)
+    data = """\
+    Test passed
+    """
+#    app.logger.error( 'erreur personnelle :-)', exc_info=True)
+#    flask.abort(500)
+    return TPL("default.html", title='Test', data=data)
   
 @app.route('/paramurl/<int:number>')
 def paramurl(number):
