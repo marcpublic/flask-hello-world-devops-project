@@ -14,7 +14,7 @@ api.add_resource(Divide, "/division")
 
 @app.route('/')
 def hello_world():
-    return "Hello World!"
+    return "Hello Thales!"
 
 
 if __name__=="__main__":
