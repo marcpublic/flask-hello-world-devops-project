@@ -32,7 +32,7 @@ def test():
     """
 #    app.logger.error( 'erreur personnelle :-)', exc_info=True)
 #    flask.abort(500)
-    time.sleep(5)
+#    time.sleep(5)
     return TPL("default.html", title='Test', data=data)
   
 @app.route('/paramurl/<int:number>')
