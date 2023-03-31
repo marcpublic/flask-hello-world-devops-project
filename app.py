@@ -4,6 +4,7 @@ import flask
 from elasticapm.contrib.flask import ElasticAPM
 import logging
 from elasticapm.handlers.logging import LoggingHandler
+import time
 
 TPL = flask.render_template # Pour éviter de toujours taper flask.render_template...
 
@@ -31,6 +32,7 @@ def test():
     """
 #    app.logger.error( 'erreur personnelle :-)', exc_info=True)
 #    flask.abort(500)
+    time.sleep(5s)
     return TPL("default.html", title='Test', data=data)
   
 @app.route('/paramurl/<int:number>')
