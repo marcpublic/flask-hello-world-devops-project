@@ -24,7 +24,7 @@ def info():
     """
     return TPL("default.html", title='Home', data=data)
   
-@app.route('/test2')
+@app.route('/test')
 def test():
     data = """\
     Test passed
