@@ -14,6 +14,7 @@ app.config['ELASTIC_APM'] = {
   'SECRET_TOKEN': 'LG5PoPO8Mw9fJ9Dq1d',
   'SERVER_URL': 'https://822e8d5da0df47de93ba7d00e69b6c38.apm.eu-west-1.aws.cloud.es.io:443',
   'ENVIRONMENT': 'my-deployment',
+  'SERVICE_VERSION' : 'V1.0',
 }
 
 apm = ElasticAPM(app, loging=True)
