@@ -23,7 +23,14 @@ def info():
     Bonjour Thales!!!
     """
     return TPL("default.html", title='Home', data=data)
-
+  
+@app.route('/test')
+def test():
+    data = """\
+    Test passed
+    """
+    return TPL("default.html", title='Test', data=data)
+  
 @app.route('/paramurl/<int:number>')
 def paramurl(number):
     data = """\
