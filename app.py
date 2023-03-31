@@ -14,7 +14,7 @@ app.config['ELASTIC_APM'] = {
   'SECRET_TOKEN': 'LG5PoPO8Mw9fJ9Dq1d',
   'SERVER_URL': 'https://822e8d5da0df47de93ba7d00e69b6c38.apm.eu-west-1.aws.cloud.es.io:443',
   'ENVIRONMENT': 'my-deployment',
-  'SERVICE_VERSION' : 'V1.0',
+  'SERVICE_VERSION' : 'V1.1',
 }
 
 apm = ElasticAPM(app, loging=True)
@@ -33,7 +33,7 @@ def test():
     """
 #    app.logger.error( 'erreur personnelle :-)', exc_info=True)
 #    flask.abort(500)
-#    time.sleep(5)
+    time.sleep(5)
     return TPL("default.html", title='Test', data=data)
   
 @app.route('/paramurl/<int:number>')
