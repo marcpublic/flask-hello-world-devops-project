@@ -2,6 +2,8 @@
 
 import flask
 from elasticapm.contrib.flask import ElasticAPM
+import logging
+from elasticapm.handlers.logging import LoggingHandler
 
 TPL = flask.render_template # Pour éviter de toujours taper flask.render_template...
 
@@ -13,12 +15,12 @@ app.config['ELASTIC_APM'] = {
   'ENVIRONMENT': 'my-deployment',
 }
 
-apm = ElasticAPM(app)
+apm = ElasticAPM(app, loging=True)
 
 @app.route('/')
 def info():
     data = """\
-    Bonjour Visiteur
+    Bonjour Thales!!!
     """
     return TPL("default.html", title='Home', data=data)
 
@@ -72,7 +74,13 @@ def data_json():
 # https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
 @app.route('/forbidden')
 def forbidden():
+    app.logger.error( 'Désolé, c\'est interdit :-)', exc_info=True)
     flask.abort(403)
+
+@app.route('/internal')
+def internal():
+    app.logger.error( 'Trop fatigué pour répondre :-)', exc_info=True)
+    flask.abort(500)
 
 @app.route('/redirect_me')
 def redirect_me():
@@ -81,6 +89,9 @@ def redirect_me():
 print("PATH =====>", app.instance_path)
 if __name__ == '__main__':
     app.config['DEBUG'] = False
+    handler = LoggingHandler(client=apm.client)
+    handler.setLevel(logging.WARN)
+    app.logger.addHandler(handler)
     app.secret_key = 'chooseaverysecretkeyhere'
-#    app.run(host='0.0.0.0', port=5000)
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)
+#    app.run(host='0.0.0.0', port=80)
